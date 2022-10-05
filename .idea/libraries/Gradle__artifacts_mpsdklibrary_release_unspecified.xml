@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:mpsdklibrary-release:unspecified">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/mpsdklibrary-release/build/.transforms/26f199c38a2e1f2326beea03e24828ff/transformed/res" />
+      <root url="file://$PROJECT_DIR$/mpsdklibrary-release/build/.transforms/26f199c38a2e1f2326beea03e24828ff/transformed/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/mpsdklibrary-release/build/.transforms/26f199c38a2e1f2326beea03e24828ff/transformed/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

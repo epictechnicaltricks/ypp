@@ -1,0 +1,3 @@
+include ':mpsdklibrary-release'
+include ':app'
+rootProject.name = "EasyScholar"

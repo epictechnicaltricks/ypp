@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group>
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/student"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_fee"
+            android:icon="@drawable/rzp_poweredby"
+            android:title="Fees Pay" />
+
+        <item
+            android:id="@+id/nav_result"
+            android:icon="?attr/actionModePasteDrawable"
+            android:title="Result" />
+        <item
+            android:id="@+id/nav_About"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_privacy"
+            android:icon="@drawable/privacy"
+            android:title="Privacy police" />
+
+        <item
+            android:id="@+id/nav_terms"
+            android:icon="@drawable/terms"
+            android:title="Terms and Condition" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_phone"
+            android:title="contact us" />
+
+    </group>
+    <item android:title= "Account" >
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+</menu>
