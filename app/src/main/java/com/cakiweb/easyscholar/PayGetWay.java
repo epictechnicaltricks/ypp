@@ -3,6 +3,7 @@ package com.cakiweb.easyscholar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.atom.mpsdklibrary.PayActivity;
+import com.instamojo.android.Instamojo;
 import com.razorpay.Checkout;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
@@ -20,13 +22,25 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class PayGetWay extends AppCompatActivity {
+public class PayGetWay extends AppCompatActivity implements Instamojo.InstamojoPaymentCallback {
     String amount,strEmail,strFname,strPhone,strSession,strMonth,strFine,strId;
     TextView fatherName,email,phone,fee,fine,session,month,id;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_get_way);
+
+        ////////// INSTAMOJO
+        Instamojo.getInstance().initialize(this, Instamojo.Environment.TEST);
+
+
+
+
+        //
+
         Checkout.preload(getApplicationContext());
         fatherName=findViewById(R.id.conName);
         email=findViewById(R.id.conEmail);
@@ -118,8 +132,22 @@ public class PayGetWay extends AppCompatActivity {
 
     }
     public void onConform(View view) {
-        Toast.makeText(PayGetWay.this, "can't process now", Toast.LENGTH_SHORT).show();
+
+
+        //Toast.makeText(PayGetWay.this, "can't process now", Toast.LENGTH_SHORT).show();
     }
+
+    public void onInstmojo(View view) {
+
+      //  Instamojo.getInstance().initiatePayment(this, orderID, this);
+
+        Instamojo.getInstance().initiatePayment(this, "765", this);
+
+
+        //Toast.makeText(PayGetWay.this, "can't process now", Toast.LENGTH_SHORT).show();
+    }
+
+
     public String encodeBase64 (String encode)
     {
         String decode = null;
@@ -143,4 +171,38 @@ public class PayGetWay extends AppCompatActivity {
     public void onBack(View view) {
         onBackPressed();
     }
+
+
+
+
+    @Override
+    public void onInstamojoPaymentComplete(String orderID, String transactionID, String paymentID, String paymentStatus) {
+
+        String msg = "Payment complete. Order ID: " + orderID + ", Transaction ID: " + transactionID
+                + ", Payment ID:" + paymentID + ", Status: " + paymentStatus;
+
+        Log.d("payment",msg );
+
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onPaymentCancelled() {
+
+        Toast.makeText(this, "Payment cancelled", Toast.LENGTH_SHORT).show();
+        Log.d("payment", "Payment cancelled");
+    }
+
+    @Override
+    public void onInitiatePaymentFailure(String s) {
+
+        Log.d("payment", "Initiate payment failed");
+        Toast.makeText(this, "Initiating payment failed. Error: " + s, Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
+
 }

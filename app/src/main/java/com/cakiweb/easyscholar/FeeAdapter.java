@@ -56,17 +56,15 @@ public class   FeeAdapter extends RecyclerView.Adapter<FeeAdapter.viewHolder>  {
             holder.feePay.setVisibility(View.GONE);
             holder.feeBill.setVisibility(View.VISIBLE);
         }
-        holder.feePay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,PayGetWay.class);
-                intent.putExtra("amount",feeData1.getFeeamount());
-                intent.putExtra("id",feeData1.getId());
-                intent.putExtra("fine",feeData1.getFinecollected());
-                intent.putExtra("session",feeData1.getSessionid());
-                intent.putExtra("month",feeData1.getMonthyear());
-                context.startActivity(intent);
-            }
+        holder.feePay.setOnClickListener(v -> {
+
+            Intent intent = new Intent(context,PayGetWay.class);
+            intent.putExtra("amount",feeData1.getFeeamount());
+            intent.putExtra("id",feeData1.getId());
+            intent.putExtra("fine",feeData1.getFinecollected());
+            intent.putExtra("session",feeData1.getSessionid());
+            intent.putExtra("month",feeData1.getMonthyear());
+            context.startActivity(intent);
         });
         holder.feeBill.setOnClickListener(v -> Toast.makeText(context,"You cant download now",Toast.LENGTH_SHORT).show());
 
