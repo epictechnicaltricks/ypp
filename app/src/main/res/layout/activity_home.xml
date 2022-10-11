@@ -459,7 +459,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:onClick="onBasicInfo"
+                            android:onClick="onCalender"
                             app:cardBackgroundColor="@color/white"
                             app:cardCornerRadius="5dp">
 
@@ -509,7 +509,7 @@
                             android:layout_margin="3dp"
                             android:layout_weight=".3"
                             app:cardCornerRadius="5dp"
-                            android:onClick="onOnline_Class"
+                            android:onClick="onCca_result"
                             app:cardBackgroundColor="@color/white">
 
                             <RelativeLayout
@@ -557,7 +557,7 @@
                             android:layout_margin="3dp"
                             android:layout_weight=".3"
                             android:background="@drawable/home_button"
-                            android:onClick="onExamTimeTable"
+                            android:onClick="onComplain"
                             app:cardBackgroundColor="@color/white">
 
                             <RelativeLayout

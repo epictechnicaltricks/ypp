@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.cakiweb.easyscholar">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -38,10 +37,12 @@
         <activity android:name=".BasicInformation" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".notice_view"/>
+        <activity android:name=".Cca_result_Activity"/>
 
         <activity android:name=".pdfview"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
 
 
             <intent-filter>

@@ -99,8 +99,8 @@ public class HomeActivity extends AppCompatActivity {
                                         SharedPreferences sha = HomeActivity.this.getSharedPreferences("MySharedPref",MODE_PRIVATE);
                                         SharedPreferences.Editor editor = sha.edit();
                                         editor.clear();
-                                        editor.commit();
-                                        Intent intent=new Intent(HomeActivity.this, LoginActivity.class);
+                                        editor.apply();
+                                                                                Intent intent=new Intent(HomeActivity.this, LoginActivity.class);
                                         startActivity(intent);
                                     }
                                 });
@@ -215,6 +215,27 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
     }
 
+    public void onCalender(View view) {
+        //Intent intent=new Intent(HomeActivity.this,TimeTable.class);
+        //startActivity(intent);
+        Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onCca_result(View view) {
+        //Intent intent=new Intent(HomeActivity.this,TimeTable.class);
+        //startActivity(intent);
+
+        startActivity(new Intent(this,Cca_result_Activity.class));
+
+      
+        //Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onComplain(View view) {
+        //Intent intent=new Intent(HomeActivity.this,TimeTable.class);
+        //startActivity(intent);
+        Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
+    }
 
 
     public void onExamTimeTable(View view) {
