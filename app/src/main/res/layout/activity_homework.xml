@@ -74,10 +74,10 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/below"
         android:id="@+id/homeworkRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/below"
         android:padding="5dp"
         tools:listitem="@layout/home_work" />
 </RelativeLayout>

@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Homework extends AppCompatActivity {
     LinearLayout noData;
@@ -67,6 +68,8 @@ public class Homework extends AppCompatActivity {
         ProgressDialog loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
         //String url = HttpURL+"?method=homework&userId="+id;
         String url = api+"student_id="+stu_id+"&method="+id+"&class_id="+class_id;
+        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -107,7 +110,12 @@ public class Homework extends AppCompatActivity {
                 for (int i = 0; i < result.length(); i++) {
                     JSONObject ob = result.getJSONObject(i);
                     if(id.equals("homework")){
-                        HomeWorkData homeWorkData1=new HomeWorkData(ob.getString("date"),ob.getString("Subject"),ob.getString("home_task"),ob.getString("date"),ob.getString("chapter"),"na","na","Download the attachment",ob.getString("attend_status"));
+                        HomeWorkData homeWorkData1=new HomeWorkData(ob.getString("date")
+                                ,ob.getString("Subject")
+                                ,ob.getString("home_task")
+                                ,ob.getString("date")
+                                ,ob.getString("chapter")
+                                ,"na","na","Download the attachment",ob.getString("attend_status"));
                         homeWorkData.add(homeWorkData1);
                     }
                     else {
@@ -119,6 +127,8 @@ public class Homework extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            Collections.reverse(homeWorkData);
             recyclerView.setAdapter(homeWorkAdapter);
             homeWorkAdapter.notifyDataSetChanged();
         }

@@ -32,12 +32,33 @@ public class HomeWorkAdapter extends RecyclerView.Adapter<HomeWorkAdapter.viewHo
     public void onBindViewHolder(@NonNull HomeWorkAdapter.viewHolder holder, int position) {
         final HomeWorkData homeWorkData1=homeWorkData.get(position);
         int pos1=homeWorkData.indexOf(homeWorkData1);
-        holder.month.setText(homeWorkData1.getMonth());
+
+
+
+        if(homeWorkData1.getMonth().contains("00:00:00"))
+        {
+            String x = homeWorkData1.getMonth().replaceAll("00:00:00", "");
+
+            holder.month.setText(x);
+            holder.submitBy.setText(x);
+
+        }else {
+            holder.month.setText(homeWorkData1.getMonth());
+            holder.submitBy.setText(homeWorkData1.getMonth());
+            // this same dates
+        }
+
+
+        // this visibility is temp
+       // holder.submittedDate.setVisibility(View.GONE);
+       // holder.partExam.setVisibility(View.GONE);
+
+
         holder.subName.setText(homeWorkData1.getSubName());
         holder.topic.setText(homeWorkData1.getTopic());
-        holder.submitBy.setText(homeWorkData1.getSubmitBy());
+        //holder.submitBy.setText(homeWorkData1.getSubmitBy());
         holder.chapter.setText(homeWorkData1.getChapter());
-        holder.submittedDate.setText(homeWorkData1.getSubmittedDate());
+
         holder.partExam.setText(homeWorkData1.getPartExam());
 //        holder.doc.setText(homeWorkData1.getDoc());
         holder.homeWorkStatus.setText(homeWorkData1.getHomeWorkStatus());
