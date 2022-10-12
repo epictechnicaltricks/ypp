@@ -218,7 +218,12 @@ public class HomeActivity extends AppCompatActivity {
     public void onCalender(View view) {
         //Intent intent=new Intent(HomeActivity.this,TimeTable.class);
         //startActivity(intent);
-        Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
+
+        Intent in = new Intent();
+        in.setClass(HomeActivity.this,pdfview.class);
+        in.putExtra("request","calender");
+        startActivity(in);
+        //Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
     }
 
     public void onCca_result(View view) {
@@ -231,10 +236,13 @@ public class HomeActivity extends AppCompatActivity {
         //Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
     }
 
-    public void onComplain(View view) {
-        //Intent intent=new Intent(HomeActivity.this,TimeTable.class);
-        //startActivity(intent);
-        Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
+    public void onSyllabus(View view) {
+
+        Intent in = new Intent();
+        in.setClass(HomeActivity.this,pdfview.class);
+        in.putExtra("request","syllabus");
+        startActivity(in);
+        //Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
     }
 
 

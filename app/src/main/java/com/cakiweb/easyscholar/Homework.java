@@ -81,7 +81,7 @@ public class Homework extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Homework.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(Homework.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
 

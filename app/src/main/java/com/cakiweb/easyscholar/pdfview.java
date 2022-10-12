@@ -3,6 +3,7 @@ package com.cakiweb.easyscholar;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -18,8 +19,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.rajat.pdfviewer.PdfViewerActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -36,6 +39,20 @@ public class pdfview extends  Activity {
 	
 	private RequestNetwork in;
 	private RequestNetwork.RequestListener _in_request_listener;
+
+
+	private HashMap<String, Object> map = new HashMap<>();
+	private String list = "";
+	private String url = "";
+
+	private ArrayList<HashMap<String, Object>> results = new ArrayList<>();
+
+
+	private RequestNetwork req;
+	private RequestNetwork.RequestListener _req_request_listener;
+
+	String id,stu_id,class_id,api,session_id;
+
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
@@ -54,8 +71,28 @@ public class pdfview extends  Activity {
 		webview1.getSettings().setJavaScriptEnabled(true);
 		webview1.getSettings().setSupportZoom(true);
 		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
+
+
+
+
 		in = new RequestNetwork(this);
-		
+		req = new RequestNetwork(this);
+
+
+
+
+
+		SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+		stu_id = sh.getString("student_id", "");
+		class_id= sh.getString("class_id", "");
+		api=sh.getString("api","");
+		session_id = sh.getString("session_id","");
+
+
+
+
+
+
 		webview1.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
@@ -87,6 +124,9 @@ public class pdfview extends  Activity {
 				final String _tag = _param1;
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
+
+
+
 				webLayout.setVisibility(View.VISIBLE);
 			}
 			
@@ -98,29 +138,76 @@ public class pdfview extends  Activity {
 				showMessage( "No internet !");
 			}
 		};
+
+
+
+
+
+		_req_request_listener = new RequestNetwork.RequestListener() {
+			@Override
+			public void onResponse(String _param1, String _param2, HashMap<String, Object> _param3) {
+				final String _tag = _param1;
+				final String _response = _param2;
+				final HashMap<String, Object> _responseHeaders = _param3;
+				try {
+					if (_response.contains("200")) {
+						map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
+						list = (new Gson()).toJson(map.get("resultSet"), new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
+						results = new Gson().fromJson(list, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
+
+						url = results.get((int)0).get("attachment").toString();
+
+						loadPDF(url);
+
+						Toast.makeText(pdfview.this, results.get((int)0).get("session_name").toString(), Toast.LENGTH_SHORT).show();
+					}
+				} catch(Exception e) {
+					Toast.makeText(pdfview.this, "Error on Fetch", Toast.LENGTH_SHORT).show();
+				}
+			}
+
+			@Override
+			public void onErrorResponse(String _param1, String _param2) {
+				final String _tag = _param1;
+				final String _message = _param2;
+				showMessage( "No internet !");
+			}
+		};
+
+
+
+
+
+
 	}
 	
 	private void initializeLogic() {
-		//_transparent_satus();
+
+
+if(getIntent().getStringExtra("request").equals("calender")) {
+
+	API_request("academic_calendar", class_id,session_id,api);
+
+}
+
+if(getIntent().getStringExtra("request").equals("syllabus")) {
+
+	API_request("syllabus", class_id,session_id,api);
+
+}
 
 
 
 
-		pdfURL = getIntent().getStringExtra("pdfURL");
-		Intent in = new Intent(Intent.ACTION_VIEW);
-		in.setData(Uri.parse(pdfURL));
-		startActivity(in);
-	/*	startActivity(PdfViewerActivity.Companion.launchPdfFromUrl(this, pdfURL,
-				"Result Details", "dir",true));
-        finish();
-*/
+
+		//https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=643
+
+		//https://yppschool.com/erp/index.php/Api_request/api_list?method=syllabus&session_id=25&class_id=11
 
 
+		//https://yppschool.com/erp/index.php/Api_request/api_list?method=academic_calendar&session_id=25&class_id=11
 
-		//https://www.orimi.com/pdf-test.pdf
-		String prefix = "https://docs.google.com/gview?embedded=true&url=";
-		webview1.loadUrl(prefix.concat(pdfURL));
-		
+
 		webview1.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> _Open_url(url));
 		
 		_ZoomWebView(webview1, true);
@@ -131,6 +218,31 @@ public class pdfview extends  Activity {
 		
 		super.onActivityResult(_requestCode, _resultCode, _data);
 		
+
+	}
+
+	private  void API_request(String _method,String _class_id, String _session_id , String _api)
+	{
+		HashMap<String, Object> map2 = new HashMap<>();
+		map2.put("method", _method);
+		map2.put("session_id", _session_id);
+		map2.put("class_id", _class_id);
+
+		req.setParams(map2, RequestNetworkController.REQUEST_PARAM);
+		req.startRequestNetwork(
+				RequestNetworkController.GET,
+				_api,
+				"tag", _req_request_listener);
+
+	}
+
+	private void loadPDF(String url)
+	{
+		//pdfURL = getIntent().getStringExtra("pdfURL");
+		pdfURL = url;
+		String prefix = "https://docs.google.com/gview?embedded=true&url=";
+		webview1.loadUrl(prefix.concat(pdfURL));
+
 
 	}
 	
