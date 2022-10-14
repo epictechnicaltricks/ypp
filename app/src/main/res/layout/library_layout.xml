@@ -1,0 +1,102 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/_coordinator"
+	android:background="#fff"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+		<LinearLayout
+			android:background="#fff"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="70dp"
+				android:background="@drawable/but_style_library"
+				android:orientation="horizontal"
+				android:padding="10dp">
+
+				<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent">
+
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerInParent="true"
+						android:onClick="onBack"
+						app:srcCompat="@drawable/arrow1" />
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_centerVertical="true"
+						android:layout_marginLeft="10dp"
+						android:text="Library details"
+						android:textColor="@color/white"
+						android:textSize="30sp"
+						android:textStyle="bold"
+						android:layout_marginStart="10dp" />
+				</RelativeLayout>
+			</LinearLayout>
+
+
+			<RelativeLayout
+			android:id="@+id/relative"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="#FFFFFF"
+			android:orientation="vertical">
+			<LinearLayout
+				android:id="@+id/layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/recyclerview1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					tools:listitem="@layout/lib_custom"
+					android:padding="8dp"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/prog"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center_horizontal|center_vertical"
+				android:orientation="vertical"
+				android:padding="8dp">
+
+				<ProgressBar
+					android:id="@+id/progressbar1"
+					style="?android:progressBarStyle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:indeterminate="false"
+					android:padding="8dp" />
+
+				<TextView
+					android:id="@+id/textview1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="Getting"
+					android:textColor="#000000"
+					android:textSize="20sp"
+					android:textStyle="bold" />
+			</LinearLayout>
+		</RelativeLayout>
+	</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

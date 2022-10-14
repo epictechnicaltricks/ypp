@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Attendance extends AppCompatActivity {
+public class _Attendance_not_added extends AppCompatActivity {
 
     RecyclerView recyclerView;
     LinearLayout noData,linearLayout;
@@ -93,7 +93,7 @@ public class Attendance extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
 
-                progressDialog = ProgressDialog.show(Attendance.this, "Loading Data", null, true, true);
+                progressDialog = ProgressDialog.show(_Attendance_not_added.this, "Loading Data", null, true, true);
             }
 
             @Override
@@ -101,7 +101,7 @@ public class Attendance extends AppCompatActivity {
 
                 super.onPostExecute(httpResponseMsg);
                 progressDialog.dismiss();
-                Toast.makeText(Attendance.this, httpResponseMsg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(_Attendance_not_added.this, httpResponseMsg, Toast.LENGTH_SHORT).show();
 
                 if (httpResponseMsg.contains("200")) {
                     try {

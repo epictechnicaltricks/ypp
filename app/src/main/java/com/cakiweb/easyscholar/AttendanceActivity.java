@@ -3,7 +3,6 @@ package com.cakiweb.easyscholar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,32 +14,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 
 
-public class LibraryActivity extends  AppCompatActivity  {
+public class AttendanceActivity extends  AppCompatActivity  { 
 	
 	
-	private Toolbar _toolbar;
-	private AppBarLayout _app_bar;
-	private CoordinatorLayout _coordinator;
+
 	private String list = "";
 	private HashMap<String, Object> map = new HashMap<>();
 	
 	private ArrayList<HashMap<String, Object>> results = new ArrayList<>();
-	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
+	private final ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
 	
 	private RelativeLayout relative;
 	private LinearLayout layout;
@@ -53,32 +48,31 @@ public class LibraryActivity extends  AppCompatActivity  {
 	private RequestNetwork.RequestListener _api_request_listener;
 
 	String stu_id,class_id,session_id,api_URL;
-
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.library_layout);
+		setContentView(R.layout.attendance);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
 		
-			relative = (RelativeLayout) findViewById(R.id.relative);
-		layout = (LinearLayout) findViewById(R.id.layout);
-		prog = (LinearLayout) findViewById(R.id.prog);
-		recyclerview1 = (RecyclerView) findViewById(R.id.recyclerview1);
-		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
-		textview1 = (TextView) findViewById(R.id.textview1);
-		api = new RequestNetwork(this);
 
+
+		relative = findViewById(R.id.relative);
+		layout = findViewById(R.id.layout);
+		prog = findViewById(R.id.prog);
+		recyclerview1 = findViewById(R.id.recyclerview1);
+		progressbar1 = findViewById(R.id.progressbar1);
+		textview1 = findViewById(R.id.textview1);
+		api = new RequestNetwork(this);
 
 		SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 		stu_id = sh.getString("student_id", "");
 		class_id= sh.getString("class_id", "");
 		api_URL=sh.getString("api","");
 		session_id = sh.getString("session_id","");
-
 
 
 		_api_request_listener = new RequestNetwork.RequestListener() {
@@ -88,31 +82,25 @@ public class LibraryActivity extends  AppCompatActivity  {
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
 				try {
-					prog.setVisibility(View.GONE);
-
 					if (_response.contains("200")) {
-
 						map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
 						list = (new Gson()).toJson(map.get("resultSet"), new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
 						results = new Gson().fromJson(list, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
 						Collections.reverse(results);
-
+						prog.setVisibility(View.GONE);
 						_reftesh();
-					} else {
+					}else {
 
 						showMessage("Sorry No record Found!!!");
 						finish();
 					}
 				} catch(Exception e) {
-
-			showMessage("Error on response");
+					showMessage("Error ");
 				}
 			}
 			
 			@Override
 			public void onErrorResponse(String _param1, String _param2) {
-				final String _tag = _param1;
-				final String _message = _param2;
 				showMessage( "No internet !");
 				textview1.setText("No internet !");
 			}
@@ -121,16 +109,15 @@ public class LibraryActivity extends  AppCompatActivity  {
 	
 	private void initializeLogic() {
 
-		//api url
-		showMessage("https://yppschool.com/erp/index.php/Api_request/api_list?method=libraryissues&student_id=2451");
+		//https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=643
 
-		String method = "libraryissues";
+		showMessage("https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=643");
+
+		String method = "attendance";
 		API_request(method,stu_id,api_URL);
 
+
 	}
-
-
-
 
 
 	private  void API_request(String _method, String _student_id , String _api)
@@ -138,6 +125,7 @@ public class LibraryActivity extends  AppCompatActivity  {
 		HashMap<String, Object> map2 = new HashMap<>();
 		map2.put("method", _method);
 		map2.put("student_id", _student_id);
+
 
 		api.setParams(map2, RequestNetworkController.REQUEST_PARAM);
 
@@ -148,8 +136,6 @@ public class LibraryActivity extends  AppCompatActivity  {
 				_api_request_listener);
 
 	}
-
-
 
 
 	@Override
@@ -163,10 +149,7 @@ public class LibraryActivity extends  AppCompatActivity  {
 		recyclerview1.setAdapter(new Recyclerview1Adapter(results));
 		recyclerview1.setLayoutManager(new LinearLayoutManager(this));
 	}
-
-	public void onBack(View view) {
-		finish();
-	}
+	
 	
 	public class Recyclerview1Adapter extends Adapter<Recyclerview1Adapter.ViewHolder> {
 		ArrayList<HashMap<String, Object>> _data;
@@ -177,7 +160,7 @@ public class LibraryActivity extends  AppCompatActivity  {
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			LayoutInflater _inflater = (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View _v = _inflater.inflate(R.layout.lib_custom, null);
+			View _v = _inflater.inflate(R.layout.attendance_custom_view, null);
 			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 			_v.setLayoutParams(_lp);
 			return new ViewHolder(_v);
@@ -187,44 +170,35 @@ public class LibraryActivity extends  AppCompatActivity  {
 		public void onBindViewHolder(ViewHolder _holder, final int _position) {
 			View _view = _holder.itemView;
 			
-			final LinearLayout bg = (LinearLayout) _view.findViewById(R.id.bg);
-			final LinearLayout linear2 = (LinearLayout) _view.findViewById(R.id.linear2);
-			final LinearLayout ly1 = (LinearLayout) _view.findViewById(R.id.ly1);
-			final LinearLayout ly2 = (LinearLayout) _view.findViewById(R.id.ly2);
-			final LinearLayout ly3 = (LinearLayout) _view.findViewById(R.id.ly3);
-			final LinearLayout ly4 = (LinearLayout) _view.findViewById(R.id.ly4);
-			final LinearLayout ly5_status = (LinearLayout) _view.findViewById(R.id.ly5_status);
-			final TextView textview3 = (TextView) _view.findViewById(R.id.textview3);
-			final TextView book_name = (TextView) _view.findViewById(R.id.book_name);
-			final TextView textview4 = (TextView) _view.findViewById(R.id.textview4);
-			final TextView subtitle = (TextView) _view.findViewById(R.id.subtitle);
-			final TextView textview5 = (TextView) _view.findViewById(R.id.textview5);
-			final TextView issue_date = (TextView) _view.findViewById(R.id.issue_date);
-			final TextView textview6 = (TextView) _view.findViewById(R.id.textview6);
-			final TextView return_date = (TextView) _view.findViewById(R.id.return_date);
-			final TextView return_status = (TextView) _view.findViewById(R.id.return_status);
+			final LinearLayout linear1 = _view.findViewById(R.id.linear1);
+			final LinearLayout top = _view.findViewById(R.id.top);
+			final LinearLayout bottom = _view.findViewById(R.id.bottom);
+			final TextView textview1 = _view.findViewById(R.id.textview1);
+			final TextView textview2 = _view.findViewById(R.id.textview2);
+			final TextView date = _view.findViewById(R.id.date);
+			final TextView status = _view.findViewById(R.id.status);
 			
-			try {
-				ly1.setElevation((float)15);
-				ly3.setElevation((float)15);
-				bg.setElevation((float)15);
-				ly5_status.setElevation((float)15);
-				book_name.setText(results.get((int)_position).get("title").toString());
-				subtitle.setText(results.get((int)_position).get("subtitle").toString());
-				issue_date.setText(results.get((int)_position).get("issue_date").toString());
-				return_date.setText(results.get((int)_position).get("return_date").toString());
-				if (results.get((int)_position).get("is_returned").toString().equals("1")) {
-					return_status.setText("Successfully returned ");
-					return_status.setTextColor(0xFF43A047);
-					ly5_status.setBackground(new GradientDrawable(GradientDrawable.Orientation.BR_TL,new int[] {0xFFE8F5E9,0xFFF9FBE7}));
-				}
-				else {
-					return_status.setText("Book not returned ");
-					return_status.setTextColor(0xFFF44336);
-					ly5_status.setBackground(new GradientDrawable(GradientDrawable.Orientation.BR_TL,new int[] {0xFFFFEBEE,0xFFFCE4EC}));
-				}
-			} catch(Exception e) {
-				showMessage( "Error on Parameters ");
+			if (_position == 0) {
+				top.setVisibility(View.VISIBLE);
+			}
+			else {
+				top.setVisibility(View.GONE);
+			}
+			top.setElevation((float)16);
+			bottom.setElevation((float)20);
+			date.setText(Objects.requireNonNull(results.get(_position).get("created_on")).toString());
+			if (Objects.requireNonNull(results.get(_position).get("status")).toString().equals("1")) {
+
+				bottom.setBackgroundColor(0xFFE8F5E9);
+
+				status.setText("Present");
+				status.setTextColor(0xFF43A047);
+			}
+			else {
+
+				bottom.setBackgroundColor(0xFFFFEBEE);
+				status.setText("Absent");
+				status.setTextColor(0xFFF44336);
 			}
 		}
 		
@@ -240,11 +214,16 @@ public class LibraryActivity extends  AppCompatActivity  {
 		}
 		
 	}
+
+
+	public void onBack(View view) {
+		finish();
+	}
 	
 	@Deprecated
 	public void showMessage(String _s) {
 		Toast.makeText(getApplicationContext(), _s, Toast.LENGTH_SHORT).show();
 	}
 	
-
+	
 }

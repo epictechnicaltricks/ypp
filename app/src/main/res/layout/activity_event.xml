@@ -71,11 +71,12 @@
             android:text="No Data Found"
             android:textSize="20sp"/>
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventRecycler"
-        android:layout_below="@+id/below"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/below"
         android:padding="2dp"
         tools:listitem="@layout/events" />
 

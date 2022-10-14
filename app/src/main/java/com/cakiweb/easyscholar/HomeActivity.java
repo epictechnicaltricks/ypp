@@ -271,10 +271,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onLibrary(View view) {
-//        Intent intent=new Intent(HomeActivity.this, LibraryActivity.class);
-//        startActivity(intent);
-        Toast.makeText(HomeActivity.this, "on progress", Toast.LENGTH_SHORT).show();
-    }
+
+        startActivity(new Intent(this,LibraryActivity.class));
+
+          }
 
     public void onFeedback(View view) {
 //        Intent intent=new Intent(HomeActivity.this, FeedBack.class);
@@ -287,8 +287,11 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+
     public void onAttendance(View view) {
-        Intent intent=new Intent(HomeActivity.this, Attendance.class);
+        Intent intent=new Intent(HomeActivity.this, AttendanceActivity.class);
         startActivity(intent);
     }
 
@@ -328,5 +331,11 @@ public class HomeActivity extends AppCompatActivity {
     public void onOnline_Class(View view) {
         Intent intent=new Intent(HomeActivity.this,TimeTable.class);
         startActivity(intent);
+    }
+
+
+    public void onPayHistory(View view){
+        startActivity(new Intent(this,PayHistoryActivity.class));
+
     }
 }

@@ -3,7 +3,7 @@ package com.cakiweb.easyscholar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,32 +15,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 
 
-public class LibraryActivity extends  AppCompatActivity  {
+public class PayHistoryActivity extends  AppCompatActivity  {
 	
 	
-	private Toolbar _toolbar;
-	private AppBarLayout _app_bar;
-	private CoordinatorLayout _coordinator;
+
 	private String list = "";
 	private HashMap<String, Object> map = new HashMap<>();
 	
 	private ArrayList<HashMap<String, Object>> results = new ArrayList<>();
-	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
+	private final ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
 	
 	private RelativeLayout relative;
 	private LinearLayout layout;
@@ -57,19 +52,19 @@ public class LibraryActivity extends  AppCompatActivity  {
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.library_layout);
+		setContentView(R.layout.pay_his_layout);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
 		
-			relative = (RelativeLayout) findViewById(R.id.relative);
-		layout = (LinearLayout) findViewById(R.id.layout);
-		prog = (LinearLayout) findViewById(R.id.prog);
-		recyclerview1 = (RecyclerView) findViewById(R.id.recyclerview1);
-		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
-		textview1 = (TextView) findViewById(R.id.textview1);
+		relative = findViewById(R.id.relative);
+		layout = findViewById(R.id.layout);
+		prog = findViewById(R.id.prog);
+		recyclerview1 = findViewById(R.id.recyclerview1);
+		progressbar1 = findViewById(R.id.progressbar1);
+		textview1 = findViewById(R.id.textview1);
 		api = new RequestNetwork(this);
 
 
@@ -95,7 +90,7 @@ public class LibraryActivity extends  AppCompatActivity  {
 						map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
 						list = (new Gson()).toJson(map.get("resultSet"), new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
 						results = new Gson().fromJson(list, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
-						Collections.reverse(results);
+						//Collections.reverse(results);
 
 						_reftesh();
 					} else {
@@ -122,9 +117,21 @@ public class LibraryActivity extends  AppCompatActivity  {
 	private void initializeLogic() {
 
 		//api url
-		showMessage("https://yppschool.com/erp/index.php/Api_request/api_list?method=libraryissues&student_id=2451");
+		showMessage("https://yppschool.com/erp/index.php/Api_request/api_list?method=payment_history&student_id=389");
+/*
+		        "id": "56400",
+				"Receipt No": "56400",
+				"Date": "07/10/2022 10:33 AM",
+				"Amount": "1910.00",
+				"Class": "STD-08",
+				"Session": "2022-2023",
+				"Payment Mode": "Cash",
+				"Print": "https://yppschool.com/erp/index.php/payments/print_receipt/56400"
 
-		String method = "libraryissues";
+
+				*/
+
+		String method = "payment_history";
 		API_request(method,stu_id,api_URL);
 
 	}
@@ -177,7 +184,7 @@ public class LibraryActivity extends  AppCompatActivity  {
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			LayoutInflater _inflater = (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View _v = _inflater.inflate(R.layout.lib_custom, null);
+			View _v = _inflater.inflate(R.layout.pay_his_custom, null);
 			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 			_v.setLayoutParams(_lp);
 			return new ViewHolder(_v);
@@ -187,44 +194,41 @@ public class LibraryActivity extends  AppCompatActivity  {
 		public void onBindViewHolder(ViewHolder _holder, final int _position) {
 			View _view = _holder.itemView;
 			
-			final LinearLayout bg = (LinearLayout) _view.findViewById(R.id.bg);
-			final LinearLayout linear2 = (LinearLayout) _view.findViewById(R.id.linear2);
-			final LinearLayout ly1 = (LinearLayout) _view.findViewById(R.id.ly1);
-			final LinearLayout ly2 = (LinearLayout) _view.findViewById(R.id.ly2);
-			final LinearLayout ly3 = (LinearLayout) _view.findViewById(R.id.ly3);
-			final LinearLayout ly4 = (LinearLayout) _view.findViewById(R.id.ly4);
-			final LinearLayout ly5_status = (LinearLayout) _view.findViewById(R.id.ly5_status);
-			final TextView textview3 = (TextView) _view.findViewById(R.id.textview3);
-			final TextView book_name = (TextView) _view.findViewById(R.id.book_name);
-			final TextView textview4 = (TextView) _view.findViewById(R.id.textview4);
-			final TextView subtitle = (TextView) _view.findViewById(R.id.subtitle);
-			final TextView textview5 = (TextView) _view.findViewById(R.id.textview5);
-			final TextView issue_date = (TextView) _view.findViewById(R.id.issue_date);
-			final TextView textview6 = (TextView) _view.findViewById(R.id.textview6);
-			final TextView return_date = (TextView) _view.findViewById(R.id.return_date);
-			final TextView return_status = (TextView) _view.findViewById(R.id.return_status);
-			
+			final TextView class_name = _view.findViewById(R.id.class_name);
+			final TextView date = _view.findViewById(R.id.date);
+			final TextView mode = _view.findViewById(R.id.mode);
+			final TextView recept = _view.findViewById(R.id.recept);
+			final TextView id_no = _view.findViewById(R.id.id_no);
+			final TextView amount = _view.findViewById(R.id.amount);
+			final TextView view = _view.findViewById(R.id.view);
+			final TextView session = _view.findViewById(R.id.session);
+
+
 			try {
-				ly1.setElevation((float)15);
-				ly3.setElevation((float)15);
-				bg.setElevation((float)15);
-				ly5_status.setElevation((float)15);
-				book_name.setText(results.get((int)_position).get("title").toString());
-				subtitle.setText(results.get((int)_position).get("subtitle").toString());
-				issue_date.setText(results.get((int)_position).get("issue_date").toString());
-				return_date.setText(results.get((int)_position).get("return_date").toString());
-				if (results.get((int)_position).get("is_returned").toString().equals("1")) {
-					return_status.setText("Successfully returned ");
-					return_status.setTextColor(0xFF43A047);
-					ly5_status.setBackground(new GradientDrawable(GradientDrawable.Orientation.BR_TL,new int[] {0xFFE8F5E9,0xFFF9FBE7}));
-				}
-				else {
-					return_status.setText("Book not returned ");
-					return_status.setTextColor(0xFFF44336);
-					ly5_status.setBackground(new GradientDrawable(GradientDrawable.Orientation.BR_TL,new int[] {0xFFFFEBEE,0xFFFCE4EC}));
-				}
+
+				 session.setText(Objects.requireNonNull(results.get(_position).get("Session")).toString());
+				class_name.setText(Objects.requireNonNull(results.get(_position).get("Class")).toString());
+				date.setText(Objects.requireNonNull(results.get(_position).get("Date")).toString());
+				mode.setText(Objects.requireNonNull(results.get(_position).get("Payment Mode")).toString());
+				recept.setText(Objects.requireNonNull(results.get(_position).get("Receipt No")).toString());
+				id_no.setText(String.format("ID: %s", results.get(_position).get("id").toString()));
+				amount.setText(String.format("₹%s", results.get(_position).get("Amount").toString()));
+
+				view.setOnClickListener(view1 -> {
+
+					Intent in=new Intent(Intent.ACTION_VIEW);
+					in.setData(Uri.parse(Objects.requireNonNull(results.get(_position).get("Print")).toString()));
+					startActivity(in);
+
+
+				});
+
+
+
+
+
 			} catch(Exception e) {
-				showMessage( "Error on Parameters ");
+				showMessage( "Error on Parameters \n\n"+e);
 			}
 		}
 		

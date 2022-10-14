@@ -20,11 +20,10 @@
         <activity android:name=".Transport" />
         <activity android:name=".Canteen" />
         <activity android:name=".Hostel" />
-        <activity android:name=".Attendance" />
+
         <activity android:name=".EventActivity" />
         <activity android:name=".LeaveApplication" />
         <activity android:name=".FeedBack" />
-        <activity android:name=".LibraryActivity" />
         <activity android:name=".StudyMaterial" />
         <activity android:name=".NoticeActivity" />
         <activity android:name=".PayGetWay" />
@@ -38,8 +37,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".notice_view"/>
         <activity android:name=".Cca_result_Activity"/>
+        <activity android:name=".AttendanceActivity"/>
 
         <activity android:name=".pdfview"/>
+        <activity android:name=".LibraryActivity"/>
+        <activity android:name=".PayHistoryActivity"/>
 
         <activity android:name=".MainActivity"
             android:exported="true">
