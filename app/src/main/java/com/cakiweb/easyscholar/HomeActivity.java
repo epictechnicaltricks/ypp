@@ -253,8 +253,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onPayment(View view) {
-        Intent intent=new Intent(HomeActivity.this,PaymentActivity.class);
-        startActivity(intent);
+       startActivity(new Intent(this,FeeActivity.class));
     }
 
     public void onNotices(View view) {

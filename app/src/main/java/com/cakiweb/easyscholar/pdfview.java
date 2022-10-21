@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -70,6 +71,7 @@ public class pdfview extends  Activity {
 		webview1 = (WebView) findViewById(R.id.webview1);
 		webview1.getSettings().setJavaScriptEnabled(true);
 		webview1.getSettings().setSupportZoom(true);
+		webview1.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 		progressbar1 = (ProgressBar) findViewById(R.id.progressbar1);
 
 
@@ -183,6 +185,7 @@ public class pdfview extends  Activity {
 	
 	private void initializeLogic() {
 
+		progress.setVisibility(View.VISIBLE);
 
 if(getIntent().getStringExtra("request").equals("calender")) {
 
@@ -195,6 +198,32 @@ if(getIntent().getStringExtra("request").equals("syllabus")) {
 	API_request("syllabus", class_id,session_id,api);
 
 }
+
+if(getIntent().getStringExtra("request").equals("pdf")) {
+
+
+/*
+
+
+startActivity(
+	PdfViewerActivity.Companion.launchPdfFromUrl(
+			this,
+			getIntent().getStringExtra("url"),
+			"More details",
+			"/storage/emulated/0/Download",
+			 true
+	));
+finish();
+
+*/
+
+			loadPDF(getIntent().getStringExtra("url"));
+	        loadPDF(getIntent().getStringExtra("url"));
+
+		}
+
+
+
 
 
 

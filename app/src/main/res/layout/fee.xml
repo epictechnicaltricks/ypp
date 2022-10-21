@@ -1,0 +1,168 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/_coordinator"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="70dp"
+			android:background="#3F51B5"
+			android:orientation="horizontal"
+			android:padding="10dp">
+
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:onClick="onBack"
+					app:srcCompat="@drawable/arrow1" />
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginStart="10dp"
+					android:layout_marginLeft="10dp"
+					android:text="Payment History"
+					android:textColor="@color/white"
+					android:textSize="30sp"
+					android:textStyle="bold" />
+			</RelativeLayout>
+		</LinearLayout>
+
+
+		<LinearLayout
+			android:id="@+id/linear1"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+			<LinearLayout
+				android:id="@+id/linear3"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_weight="1">
+				<LinearLayout
+					android:id="@+id/linear5"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:background="#3F51B5"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="horizontal">
+					<TextView
+						android:id="@+id/textview8"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="8dp"
+						android:paddingTop="5dp"
+						android:paddingRight="8dp"
+						android:paddingBottom="8dp"
+						android:text="Total pending amount"
+						android:textSize="14sp"
+						android:textColor="#E0E0E0"/>
+					<TextView
+						android:id="@+id/total_pending"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="8dp"
+						android:paddingTop="2dp"
+						android:paddingRight="8dp"
+						android:paddingBottom="2dp"
+						android:text="No data"
+						android:textSize="25sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF"/>
+					<TextView
+						android:id="@+id/textview9"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingRight="8dp"
+						android:text="No fine "
+						android:textSize="12sp"
+						android:textColor="#EEEEEE"
+						android:translationY="5.0dp"/>
+				</LinearLayout>
+				<com.google.android.material.tabs.TabLayout
+					android:id="@+id/tablayout1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#FFFFFF"
+					app:tabGravity="fill"
+					app:tabMode="fixed"
+					app:tabIndicatorHeight="3dp"
+					app:tabIndicatorColor="@android:color/white"
+					app:tabSelectedTextColor="@android:color/white"
+					app:tabTextColor="@android:color/white"
+					app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"/>
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/recyclerview1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:paddingLeft="8dp"
+					android:paddingRight="8dp"/>
+				<TextView
+					android:id="@+id/msg"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:padding="8dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:text="Getting data"
+					android:textSize="25sp"
+					android:textColor="#000000"/>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/pay"
+
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:background="#C33306"
+				android:gravity="center_horizontal|center_vertical"
+				android:orientation="horizontal">
+
+				<TextView
+					android:id="@+id/amount_text"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingLeft="8dp"
+					android:text="₹2343"
+					android:textSize="22sp"
+					android:textStyle="bold"
+					android:textColor="#FBE96E"/>
+
+
+				<TextView
+					android:id="@+id/textview6"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="Proceed to payment "
+					android:textSize="18sp"
+					android:textStyle="bold"
+					android:textColor="#FFFFFF"/>
+
+
+
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

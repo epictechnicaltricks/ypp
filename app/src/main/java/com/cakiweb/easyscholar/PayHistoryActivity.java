@@ -202,6 +202,7 @@ public class PayHistoryActivity extends  AppCompatActivity  {
 			final TextView amount = _view.findViewById(R.id.amount);
 			final TextView view = _view.findViewById(R.id.view);
 			final TextView session = _view.findViewById(R.id.session);
+			final TextView download = _view.findViewById(R.id.download);
 
 
 			try {
@@ -211,24 +212,47 @@ public class PayHistoryActivity extends  AppCompatActivity  {
 				date.setText(Objects.requireNonNull(results.get(_position).get("Date")).toString());
 				mode.setText(Objects.requireNonNull(results.get(_position).get("Payment Mode")).toString());
 				recept.setText(Objects.requireNonNull(results.get(_position).get("Receipt No")).toString());
-				id_no.setText(String.format("ID: %s", results.get(_position).get("id").toString()));
-				amount.setText(String.format("₹%s", results.get(_position).get("Amount").toString()));
+				id_no.setText(String.format("ID: %s", Objects.requireNonNull(results.get(_position).get("id")).toString()));
+
+				String amount_ = Objects.requireNonNull(results.get(_position).get("Amount")).toString().replaceAll("\\.00","");
+
+				amount.setTextColor(0xFF30AA1C);
+
+				amount.setText("₹"+amount_);
 
 				view.setOnClickListener(view1 -> {
 
-					Intent in=new Intent(Intent.ACTION_VIEW);
-					in.setData(Uri.parse(Objects.requireNonNull(results.get(_position).get("Print")).toString()));
+					//https://docs.google.com/viewer?url=https://yppschool.com/stud/index.php/payinvoice/print_receipt/56167
+
+
+					Intent in = new Intent();
+					in.setClass(getApplicationContext(),pdfview.class);
+					in.putExtra("request","pdf");
+					in.putExtra("url", Objects.requireNonNull(results.get(_position).get("Print")).toString());
 					startActivity(in);
 
+
+					/*Intent in=new Intent(Intent.ACTION_VIEW);
+					in.setData(Uri.parse(results.get(_position).get("Print").toString()));
+					startActivity(in);*/
+
+
+				});
+
+				download.setOnClickListener(view12 -> {
+
+					Intent in=new Intent(Intent.ACTION_VIEW);
+					in.setData(Uri.parse(results.get(_position).get("Print").toString()));
+					startActivity(in);
+					Toast.makeText(PayHistoryActivity.this, "Download clicked", Toast.LENGTH_SHORT).show();
 
 				});
 
 
 
 
-
 			} catch(Exception e) {
-				showMessage( "Error on Parameters \n\n"+e);
+				//showMessage( "Error on Parameters \n\n"+e);
 			}
 		}
 		

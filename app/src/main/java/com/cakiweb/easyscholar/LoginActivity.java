@@ -76,6 +76,9 @@ public class LoginActivity extends AppCompatActivity {
         ProgressDialog loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
         //String url = HttpURL+"?method=exam&userId="+id;
         String url = url1+"method=login&student_id="+strEmail+"&student_password="+strPassword;
+
+        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String httpResponseMsg) {
