@@ -352,7 +352,7 @@ public class FeeActivity extends  AppCompatActivity  {
 
 		public String _itemrow(){
 
-		for(int x=0; x<){}
+		//for(int x=0; x<){}
 		String url2="";
 		url2 = ("&itemrow["+1+"]="+pos) + url2;
 
