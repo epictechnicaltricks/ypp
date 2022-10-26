@@ -85,6 +85,7 @@ public class FeeActivity extends  AppCompatActivity  {
 	private HashMap<String, Object> selected_payment_map = new HashMap<>();
 
 
+
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
@@ -338,15 +339,26 @@ public class FeeActivity extends  AppCompatActivity  {
 		String stu_sees = "&student_session=" + session_id;
 		String stu_class ="&student_class=" +class_id;
 		String fee =     "&fee" +"(\"32\",\"3\")" ;
-		String itemrow = "&itemrow=" +"(\"35969\",\"35970\")" ;
+		String itemrow = "&itemrow[0]=" +"35969"+"&itemrow[1]=" +"35970";
+
 		String amt =     "&amount_paid=" +_amount ;
 
+		// done ?
 
 		return api+method+stuid_+stu_sees+stu_class+amt+fee+itemrow;
 
 		}
 
 
+		public String _itemrow(){
+
+		for(int x=0; x<){}
+		String url2="";
+		url2 = ("&itemrow["+1+"]="+pos) + url2;
+
+				return url2;
+
+		}
 
 	public void _request_api (final String _method) {
 		api_map = new HashMap<>();
@@ -401,6 +413,9 @@ public class FeeActivity extends  AppCompatActivity  {
 		for(int _repeat10 = 0; _repeat10 < results.size(); _repeat10++) {
 			if (results.get((int)pos).get("paid_status").toString().equals("Pending")) {
 				amt_ = amt_ + Double.parseDouble(results.get((int)pos).get("fee_amount").toString());
+
+
+
 			}
 			pos++;
 		}
@@ -494,12 +509,12 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 							itemrow_map = new HashMap<>();
-							itemrow_map.put("method", "fee_payment");
+							//itemrow_map.put("method", "fee_payment");
 							itemrow_map.put("fee", results.get(_position).get("fee_amount").toString());
 							itemrow_map.put("itemrow", results.get(_position).get("id").toString());
 							listmap.add(itemrow_map);
-							in.setParams(itemrow_map, RequestNetworkController.REQUEST_PARAM);
-							in.startRequestNetwork(RequestNetworkController.POST, api, "no tag", this_is_2);
+							//in.setParams(itemrow_map, RequestNetworkController.REQUEST_PARAM);
+							//in.startRequestNetwork(RequestNetworkController.POST, api, "no tag", this_is_2);
 
 
 
