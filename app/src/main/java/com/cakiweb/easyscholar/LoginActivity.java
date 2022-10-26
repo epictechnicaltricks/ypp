@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -73,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     public void log(){
-        ProgressDialog loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
+        ProgressDialog loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,true);
         //String url = HttpURL+"?method=exam&userId="+id;
         String url = url1+"method=login&student_id="+strEmail+"&student_password="+strPassword;
 
@@ -82,51 +81,60 @@ public class LoginActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String httpResponseMsg) {
+
+                Toast.makeText(LoginActivity.this, httpResponseMsg, Toast.LENGTH_SHORT).show();
+
                 loading.dismiss();
+
                 //showJSON(response);
                 //Toast.makeText(LoginActivity.this,httpResponseMsg,Toast.LENGTH_LONG).show();
-                if(httpResponseMsg.contains("200")){
-                    try {
-                        JSONObject jsonObject = new JSONObject(httpResponseMsg);
-                        JSONArray array = jsonObject.getJSONArray("resultSet");
-                        JSONObject ob = array.getJSONObject(0);
-                        String id=ob.getString("student_id");
-                        String name=ob.getString("student_name");
-                        String class_id=ob.getString("class_id");
-                        String sesssion_id=ob.getString("session_id");
-                        String sesssion=ob.getString("session_name");
+
+                try{
+
+                    if(httpResponseMsg.contains("200")){
+                        try {
+                            JSONObject jsonObject = new JSONObject(httpResponseMsg);
+                            JSONArray array = jsonObject.getJSONArray("resultSet");
+                            JSONObject ob = array.getJSONObject(0);
+                            String id=ob.getString("student_id");
+                            String name=ob.getString("student_name");
+                            String class_id=ob.getString("class_id");
+                            String sesssion_id=ob.getString("session_id");
+                            String sesssion=ob.getString("session_name");
 
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                        myEdit.putString("student_id", id);
-                        myEdit.putString("student_name",name);
-                        myEdit.putString("class_id", class_id);
-                        myEdit.putString("session_id", sesssion_id);
-                        myEdit.putString("api", url1);
-                       // myEdit.putString("api1","http://erpdis.dooninternational.in/erp/");
-                        myEdit.putString("api1","https://yppschool.com/erp/");
-                        myEdit.putString("session", sesssion);
+                            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                            myEdit.putString("student_id", id);
+                            myEdit.putString("student_name",name);
+                            myEdit.putString("class_id", class_id);
+                            myEdit.putString("session_id", sesssion_id);
+                            myEdit.putString("api", url1);
+                            // myEdit.putString("api1","http://erpdis.dooninternational.in/erp/");
+                            myEdit.putString("api1","https://yppschool.com/erp/");
+                            myEdit.putString("session", sesssion);
 
-                        myEdit.apply();
+                            myEdit.apply();
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        finish();
+                        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                     }
-                    finish();
-                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                    else{
+                        Toast.makeText(LoginActivity.this, httpResponseMsg, Toast.LENGTH_SHORT).show();
+                    }
+                }catch(Exception e)
+                {
+                    loading.dismiss();
+                    Toast.makeText(LoginActivity.this,e+"\n\n"+httpResponseMsg,Toast.LENGTH_LONG).show();
+
                 }
-                else{
-                    Toast.makeText(LoginActivity.this, httpResponseMsg, Toast.LENGTH_SHORT).show();
-                }
+
             }
         },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
-                    }
-                });
+                error -> Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show());
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);

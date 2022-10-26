@@ -53,6 +53,9 @@ public class FeeActivity extends  AppCompatActivity  {
 	private ArrayList<HashMap<String, Object>> results = new ArrayList<>();
 	private final ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
 	private final ArrayList<Double> add_position = new ArrayList<>();
+
+	private final ArrayList<Integer> itemrow = new ArrayList<>();
+	private HashMap<String, Object> itemrow_map = new HashMap<>();
 	
 	private LinearLayout linear1;
 	private LinearLayout linear3;
@@ -68,6 +71,7 @@ public class FeeActivity extends  AppCompatActivity  {
 	
 	private RequestNetwork in;
 	private RequestNetwork.RequestListener _in_request_listener;
+	private RequestNetwork.RequestListener this_is_2;
 	private TimerTask time;
 
 	String class_id,session_id;
@@ -170,7 +174,25 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 
+		this_is_2 = new RequestNetwork.RequestListener() {
+			@Override
+			public void onResponse(String _param1, String _param2, HashMap<String, Object> _param3) {
+				final String _tag = _param1;
+				final String _response = _param2;
+				final HashMap<String, Object> _responseHeaders = _param3;
 
+				showMessage(_response);
+
+			}
+
+			@Override
+			public void onErrorResponse(String _param1, String _param2) {
+				final String _tag = _param1;
+				final String _message = _param2;
+				showMessage( _message);
+				msg.setText("No internet!");
+			}
+		};
 
 		_in_request_listener = new RequestNetwork.RequestListener() {
 			@Override
@@ -196,7 +218,24 @@ public class FeeActivity extends  AppCompatActivity  {
 							selected_payment_map.put("Select", "False");
 							selected_payment_pos.add(selected_payment_map);
 
+
+							/*itemrow_map = new HashMap<>();
+							itemrow_map.put("fee", "");
+							itemrow_map.put("id","" );
+							listmap.add(itemrow_map);*/
+
 						}
+
+
+						/*for(int x = 0; x<5 ; ++x) {
+
+
+							itemrow_map = new HashMap<>();
+							itemrow_map.put("fee", "");
+							itemrow_map.put("itemrow","" );
+							listmap.add(itemrow_map);
+
+						}*/
 
 						map = new Gson().fromJson(_response, new TypeToken<HashMap<String, Object>>(){}.getType());
 						list = (new Gson()).toJson(map.get("resultSet"), new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
@@ -298,9 +337,12 @@ public class FeeActivity extends  AppCompatActivity  {
 		String stuid_ =  "&student_id="  + stu_id;
 		String stu_sees = "&student_session=" + session_id;
 		String stu_class ="&student_class=" +class_id;
+		String fee =     "&fee" +"(\"32\",\"3\")" ;
+		String itemrow = "&itemrow=" +"(\"35969\",\"35970\")" ;
 		String amt =     "&amount_paid=" +_amount ;
 
-		return api+method+stuid_+stu_sees+stu_class+amt;
+
+		return api+method+stuid_+stu_sees+stu_class+amt+fee+itemrow;
 
 		}
 
@@ -325,8 +367,29 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 	}
-	
-	
+
+	public void _request_api_send_server (final String _method) {
+		api_map = new HashMap<>();
+		api_map.put("method", _method);
+		api_map.put("student_id", stu_id);
+		pay.setVisibility(View.GONE);
+		msg.setVisibility(View.VISIBLE);
+		msg.setText("Getting data");
+		num = 0;
+		amt_ = 0;      // this is check box count
+		pos = 0;      // this is payable amount position
+		amount = 0;  // this is money count
+
+
+
+		in.setParams(api_map, RequestNetworkController.REQUEST_PARAM);
+		in.startRequestNetwork(RequestNetworkController.GET, api, "no tag", _in_request_listener);
+
+
+	}
+
+
+
 	public void _add_data_to_pos (final double _pos) {
 		add_position.add(Double.valueOf(_pos));
 	}
@@ -399,32 +462,60 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 
+				select.setText(results.get(_position).get("id").toString());
 
 
 
 
-			/*	if (add_position.contains(_position)) {
+
+			   /*	if (add_position.contains(_position)) {
 					select.setText("Selected");
 					pay.setVisibility(View.VISIBLE);
 					date_layout.setBackgroundColor(0xFF388E3C);
 				}
 				else {
 					date_layout.setBackgroundColor(0xFF3F51B5);
-					select.setText("Select to pay");
+					select.setText("itemrow[ ]");
 					if (num == 0) {
 						pay.setVisibility(View.GONE);
 					}
-				}*/
+				}
+
+				*/
+
+
 				select.setOnClickListener(_view1 -> {
+
 
 
 					try{
 
 						if (select.isChecked()) {
 
+
+							itemrow_map = new HashMap<>();
+							itemrow_map.put("method", "fee_payment");
+							itemrow_map.put("fee", results.get(_position).get("fee_amount").toString());
+							itemrow_map.put("itemrow", results.get(_position).get("id").toString());
+							listmap.add(itemrow_map);
+							in.setParams(itemrow_map, RequestNetworkController.REQUEST_PARAM);
+							in.startRequestNetwork(RequestNetworkController.POST, api, "no tag", this_is_2);
+
+
+
+
+
 							num++;
 							selected_payment_pos.get(_position).put("Select", "True");
 							add_position.add(Double.valueOf(_position));
+
+
+
+
+							//itemrow.add(Integer.parseInt(results.get(_position).get("id").toString()));
+
+
+
 							select.setText("Selected");
 							pay.setVisibility(View.VISIBLE);
 							date_layout.setBackgroundColor(0xFF388E3C);
@@ -441,16 +532,23 @@ public class FeeActivity extends  AppCompatActivity  {
 								selected_payment_pos.remove(_position);
 							}
 
+
+
+							//itemrow.remove(Double.parseDouble(results.get(_position).get("id").toString()));
+
 							amount = amount - Double.parseDouble(amt.getText().toString().replaceAll("₹",""));
 							add_position.remove((int)(num));
 							date_layout.setBackgroundColor(0xFF3F51B5);
-							select.setText("Select to pay");
+							select.setText("Not selected");
 
 							if (num == 0) {
 
 								pay.setVisibility(View.GONE);
 
 							}
+
+							//listmap.remove(_position);
+
 						}
 
 						//showMessage(String.valueOf(amount));
@@ -476,11 +574,12 @@ public class FeeActivity extends  AppCompatActivity  {
 						else {
 							select.setChecked(false);
 							date_layout.setBackgroundColor(0xFF3F51B5);
-							select.setText("Select to pay");
+							select.setText("Not selected");
 
 
 						}
 
+						showMessage("itemrow[ ] value \n\n"+new Gson().toJson(listmap));
 
 
 					}catch(Exception e)

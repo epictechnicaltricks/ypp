@@ -112,7 +112,7 @@
 				android:focusable="false"
 				android:gravity="center_horizontal|center_vertical"
 				android:padding="8dp"
-				android:text="Select to pay"
+				android:text="Not selected"
 				android:textColor="#FFFFFF"
 				android:textSize="14sp"
 				app:buttonTint="@color/white" />
