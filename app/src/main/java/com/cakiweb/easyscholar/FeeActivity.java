@@ -84,6 +84,8 @@ public class FeeActivity extends  AppCompatActivity  {
 
 	private HashMap<String, Object> selected_payment_map = new HashMap<>();
 
+	private ArrayList<String> itemlist = new ArrayList<>(20);
+	private ArrayList<String> feelist = new ArrayList<>(20);
 
 
 	@Override
@@ -285,6 +287,9 @@ public class FeeActivity extends  AppCompatActivity  {
 				Intent in = new Intent(Intent.ACTION_VIEW);
 				in.setData(Uri.parse(_request_amount_api(amount+"")));
 				startActivity(in);
+
+				Toast.makeText(this,_request_amount_api(amount+"") , Toast.LENGTH_SHORT).show();
+
 			}else {
 
 				pay.setVisibility(View.GONE);
@@ -338,11 +343,14 @@ public class FeeActivity extends  AppCompatActivity  {
 		String stuid_ =  "&student_id="  + stu_id;
 		String stu_sees = "&student_session=" + session_id;
 		String stu_class ="&student_class=" +class_id;
-		String fee =     "&fee" +"(\"32\",\"3\")" ;
-		String itemrow = "&itemrow[0]=" +"35969"+"&itemrow[1]=" +"35970";
-
+		//String fee =     "&fee" +"(\"32\",\"3\")" ;
+		//String itemrow = "&itemrow[0]=" +"35969"+"&itemrow[1]=" +"35970";
+		String fee =    _feelist();
+		String itemrow = _itemrow();
 		String amt =     "&amount_paid=" +_amount ;
 
+		// now date 26th oct 11:32 PM night
+		// code by shubhamjeet
 		// done ?
 
 		return api+method+stuid_+stu_sees+stu_class+amt+fee+itemrow;
@@ -354,11 +362,31 @@ public class FeeActivity extends  AppCompatActivity  {
 
 		//for(int x=0; x<){}
 		String url2="";
-		url2 = ("&itemrow["+1+"]="+pos) + url2;
 
+		for(int x=0; x<itemlist.size(); x++)
+		{
+			url2 = ("&itemrow["+x+"]="+itemlist.get(x)) + url2;
+		}
+
+			//Toast.makeText(this, url2, Toast.LENGTH_LONG).show();
 				return url2;
 
 		}
+
+	public String _feelist(){
+
+		//for(int x=0; x<){}
+		String url2="";
+
+		for(int x=0; x<feelist.size(); x++)
+		{
+			url2 = ("&fee["+x+"]="+feelist.get(x)) + url2;
+		}
+
+		//Toast.makeText(this, url2, Toast.LENGTH_LONG).show();
+		return url2;
+
+	}
 
 	public void _request_api (final String _method) {
 		api_map = new HashMap<>();
@@ -477,7 +505,7 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 
-				select.setText(results.get(_position).get("id").toString());
+				//select.setText(results.get(_position).get("id").toString());
 
 
 
@@ -507,52 +535,55 @@ public class FeeActivity extends  AppCompatActivity  {
 
 						if (select.isChecked()) {
 
-
-							itemrow_map = new HashMap<>();
-							//itemrow_map.put("method", "fee_payment");
-							itemrow_map.put("fee", results.get(_position).get("fee_amount").toString());
-							itemrow_map.put("itemrow", results.get(_position).get("id").toString());
-							listmap.add(itemrow_map);
-							//in.setParams(itemrow_map, RequestNetworkController.REQUEST_PARAM);
-							//in.startRequestNetwork(RequestNetworkController.POST, api, "no tag", this_is_2);
-
-
-
-
-
 							num++;
-							selected_payment_pos.get(_position).put("Select", "True");
-							add_position.add(Double.valueOf(_position));
-
-
-
-
-							//itemrow.add(Integer.parseInt(results.get(_position).get("id").toString()));
-
-
-
 							select.setText("Selected");
 							pay.setVisibility(View.VISIBLE);
 							date_layout.setBackgroundColor(0xFF388E3C);
 
 							amount = amount + Double.parseDouble(amt.getText().toString().replaceAll("₹",""));
 
+							itemlist.add(results.get(_position).get("id").toString());
+							feelist.add(results.get(_position).get("fee_amount").toString());
+
+
+							//itemrow_map = new HashMap<>();
+							//itemrow_map.put("method", "fee_payment");
+							//itemrow_map.put("fee", results.get(_position).get("fee_amount").toString());
+							//itemrow_map.put("itemrow", results.get(_position).get("id").toString());
+							//listmap.add(itemrow_map);
+							//in.setParams(itemrow_map, RequestNetworkController.REQUEST_PARAM);
+							//in.startRequestNetwork(RequestNetworkController.POST, api, "no tag", this_is_2);
+							//selected_payment_pos.get(_position).put("Select", "True");
+							//add_position.add(Double.valueOf(_position));
+
+
+
+
+
+
+
+
 
 						}
 						else {
 							num--;
 
+							//itemlist.remove(_position);
+							//feelist.remove(_position);
 
-							if (selected_payment_pos.get(_position).get("Select").toString().equals("True")) {
-								selected_payment_pos.remove(_position);
-							}
+
+							//if (selected_payment_pos.get(_position).get("Select").toString().equals("True")) {
+							//	selected_payment_pos.remove(_position);
+							//}
+
+
 
 
 
 							//itemrow.remove(Double.parseDouble(results.get(_position).get("id").toString()));
 
 							amount = amount - Double.parseDouble(amt.getText().toString().replaceAll("₹",""));
-							add_position.remove((int)(num));
+							//add_position.remove((int)(num));
 							date_layout.setBackgroundColor(0xFF3F51B5);
 							select.setText("Not selected");
 
@@ -578,7 +609,7 @@ public class FeeActivity extends  AppCompatActivity  {
 						}
 
 
-						if (selected_payment_pos.get(_position).get("Select").toString().equals("True")) {
+					/*	if (selected_payment_pos.get(_position).get("Select").toString().equals("True")) {
 
 							select.setText("Selected");
 							select.setChecked(true);
@@ -589,12 +620,12 @@ public class FeeActivity extends  AppCompatActivity  {
 						else {
 							select.setChecked(false);
 							date_layout.setBackgroundColor(0xFF3F51B5);
-							select.setText("Not selected");
+							select.setText("Select to Pay");
 
 
-						}
+						}*/
 
-						showMessage("itemrow[ ] value \n\n"+new Gson().toJson(listmap));
+						//showMessage("itemrow[ ] value \n\n"+new Gson().toJson(listmap));
 
 
 					}catch(Exception e)

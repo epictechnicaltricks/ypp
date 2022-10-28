@@ -48,8 +48,206 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <HorizontalScrollView
+        android:id="@+id/hscoll"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:background="#FFFDE7"
+
+        android:layout_gravity="center_horizontal|center_vertical"
+
+        android:orientation="horizontal"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:id="@+id/linear4"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:visibility="invisible"
+                android:id="@+id/teach_layout_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:background="#FFEE58"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+
+                <TextView
+                    android:id="@+id/this_is_for_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="8dp"
+                    android:text="Select Teacher"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/reset_t97each_img_"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="5dp"
+                    android:focusable="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_close_black" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/teach_layout_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:background="#FFEE58"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+
+                <TextView
+                    android:id="@+id/select_teach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="8dp"
+                    android:text="Select Teacher"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/reset_teach_img_"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="5dp"
+                    android:focusable="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_close_black" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/date_layout_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#F4F2D9"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+
+                <TextView
+                    android:id="@+id/select_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:padding="8dp"
+                    android:text="Select Date"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/reset_date_img_"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="5dp"
+                    android:focusable="false"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_close_black" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#ED1975"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="8dp"
+                android:text="FILTER"
+                android:textColor="#F3EBEB"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+
+                android:id="@+id/show_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#42A5F5"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="8dp"
+                android:text="SHOW ALL"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+
+                android:id="@+id/TEMP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#42A5F5"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="8dp"
+                android:text="space"
+                android:visibility="invisible"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
 
 </LinearLayout>
+
+
+
+
+
+
+
 
     <LinearLayout
         android:id="@+id/noDataHomework"
@@ -78,6 +276,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/below"
-        android:padding="5dp"
+        android:padding="2dp"
         tools:listitem="@layout/home_work" />
 </RelativeLayout>

@@ -54,6 +54,7 @@ public class HomeWorkAdapter extends RecyclerView.Adapter<HomeWorkAdapter.viewHo
        // holder.partExam.setVisibility(View.GONE);
 
 
+        holder.teacher.setText(homeWorkData1.getTeacher());
         holder.subName.setText(homeWorkData1.getSubName());
         holder.topic.setText(homeWorkData1.getTopic());
         //holder.submitBy.setText(homeWorkData1.getSubmitBy());
@@ -86,6 +87,7 @@ public class HomeWorkAdapter extends RecyclerView.Adapter<HomeWorkAdapter.viewHo
         TextView chapter;
         TextView submittedDate;
         TextView partExam;
+        TextView teacher;
         //TextView doc;
         TextView homeWorkStatus;
         public viewHolder(@NonNull View itemView) {
@@ -97,6 +99,7 @@ public class HomeWorkAdapter extends RecyclerView.Adapter<HomeWorkAdapter.viewHo
             chapter=itemView.findViewById(R.id.homeworkChapter);
             submittedDate=itemView.findViewById(R.id.homeworkSubmitDate);
             partExam=itemView.findViewById(R.id.homeworkExam);
+            teacher=itemView.findViewById(R.id.teacher);
            // doc=itemView.findViewById(R.id.homeworkDoc);
             homeWorkStatus=itemView.findViewById(R.id.homeworkStatus);
         }

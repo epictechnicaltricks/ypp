@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.cakiweb.easyscholar"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,6 +45,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation files('libs/xercesImpl-2.6.2-jaxb-1.0.6.jar')
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.ar.sceneform:filament-android:1.17.1'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
     implementation 'com.daimajia.easing:library:2.0@aar'

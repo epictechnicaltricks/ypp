@@ -6,20 +6,33 @@ public class HomeWorkData {
     String topic;
     String submitBy;
     String chapter;
+    String teacher;
     String submittedDate;
     String partExam;
     String doc;
     String homeWorkStatus;
-    public HomeWorkData( String month,String subName,String topic,String submitBy,String chapter,String submittedDate,String partExam,String doc,String homeWorkStatus){
+    public HomeWorkData( String month,String subName,String topic,String submitBy,String chapter,String teacher,String submittedDate,String partExam,String doc,String homeWorkStatus){
         this.month=month;
         this.subName=subName;
         this.topic=topic;
         this.submitBy=submitBy;
         this.chapter=chapter;
+        this.teacher=teacher;
         this.submittedDate=submittedDate;
         this.partExam=partExam;
         this.doc=doc;
         this.homeWorkStatus=homeWorkStatus;
+    }
+
+
+    public String getTeacher(){
+        return teacher;
+
+    }
+
+    public String setTeacher(){
+        return teacher;
+
     }
 
     public String getMonth() {

@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ResultActivity extends AppCompatActivity {
     LinearLayout noData;
@@ -106,6 +107,8 @@ public class ResultActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            Collections.reverse(resultData);
             recyclerView.setAdapter(resultAdapter);
             resultAdapter.notifyDataSetChanged();
         }
