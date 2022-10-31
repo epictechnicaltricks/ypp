@@ -2,8 +2,10 @@ package com.cakiweb.easyscholar;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +27,8 @@ public class BasicInformation extends AppCompatActivity {
     String api;
     TextView id,name,dob,gender,email,presentaddress,fathersname,mothername,stuClass,section,phone,aadhar,session,SLno,addNo,cast,fProf,mProf,mCon,mEmail;
     String student_id,strid,strname,strlast,strdate,strgender,stremail,strpresentadd,strfather,strmother,strClassname,strSession,strphone,strAadhar,strCast,strMcon,strMProf,strFProf,strSlno,strAdd;
+   ImageView profileImg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,9 @@ public class BasicInformation extends AppCompatActivity {
         phone=(TextView) findViewById(R.id.fatherConNo);
         aadhar=(TextView) findViewById(R.id.adhar);
         session=(TextView) findViewById(R.id.session);
+
+        profileImg = findViewById(R.id.profileImg);
+
 
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         student_id =sh.getString("student_id","");
@@ -92,6 +100,22 @@ public class BasicInformation extends AppCompatActivity {
                             strMProf=ob.getString("mother_income_source");
                             strSlno = ob.getString("student_serial_no");
                             strAdd = ob.getString("admission_id");
+
+                            Glide.with(getApplicationContext()).load(
+                                    Uri.parse(ob.getString("student_profile_photo")))
+                                    .error(R.drawable.avatar)
+                                    .placeholder(R.color.selected_gray)
+                                    .thumbnail(0.01f)
+                                    .into(profileImg);
+
+
+                            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+                            myEdit.putString("student_name",strname+" "+strlast);
+                            myEdit.putString("profile_IMG",ob.getString("student_profile_photo"));
+                            myEdit.apply();
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -130,6 +154,9 @@ public class BasicInformation extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
+
     public void onBack(View view) {
         finish();
     }

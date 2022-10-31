@@ -10,7 +10,7 @@
             android:title="Profile" />
         <item
             android:id="@+id/nav_fee"
-            android:icon="@drawable/rzp_poweredby"
+            android:icon="@drawable/cash_hand"
             android:title="Fees Pay" />
 
         <item
@@ -18,28 +18,28 @@
             android:icon="?attr/actionModePasteDrawable"
             android:title="Result" />
         <item
-            android:id="@+id/nav_About"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:title="About Us" />
-        <item
-            android:id="@+id/nav_privacy"
-            android:icon="@drawable/privacy"
-            android:title="Privacy police" />
+            android:id="@+id/nav_whatsapp"
+            android:icon="@drawable/whatsapp33"
+            android:title="Whatsapp us" />
 
         <item
-            android:id="@+id/nav_terms"
-            android:icon="@drawable/terms"
-            android:title="Terms and Condition" />
-        <item
             android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_phone"
-            android:title="contact us" />
+            android:icon="@drawable/phone22"
+            android:title="Call us" />
+
+        <item
+            android:id="@+id/nav_privacy"
+            android:icon="@drawable/privacypolicy"
+            android:title="Privacy policy" />
+
+
 
     </group>
     <item android:title= "Account" >
         <menu>
             <item
                 android:id="@+id/nav_logout"
+                android:icon="@drawable/logout22"
                 android:title="Logout" />
         </menu>
     </item>

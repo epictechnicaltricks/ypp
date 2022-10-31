@@ -22,7 +22,7 @@ import com.daimajia.androidanimations.library.YoYo;
 public class MainActivity extends AppCompatActivity {
     TextView animation;
     ImageView imageView;
-    private static int splash_time=1500;
+    private static int splash_time=4000;
     boolean connected = false;
     boolean isConnected = false;
     RelativeLayout inter;

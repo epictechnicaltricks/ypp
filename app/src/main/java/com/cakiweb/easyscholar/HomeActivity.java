@@ -6,10 +6,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -33,7 +36,10 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     TextView name;
-    String strName="s",tockenFcm,stu_id="1",api;
+    String strName="s",tockenFcm,stu_id="1",api,profile_img_url;
+
+    ImageView student_profile_photo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawerLayout);
         navigationView=findViewById(R.id.nav_drop);
         name=findViewById(R.id.studentName);
+
+        student_profile_photo = findViewById(R.id.profileImg);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -51,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.doon_icon);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
 
 
@@ -63,28 +72,34 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), BasicInformation.class));
                         break;
                     case R.id.nav_fee:
-                        startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
+
+                        startActivity(new Intent(getApplicationContext(), FeeActivity.class));
+
+                        // OLD one bottom payment
+                        // startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
                         // Toast.makeText(HomeActivity.this, "photo !", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_result:
                         //startActivity(new Intent(getApplicationContext(), MarkSheet.class));
-                        Toast.makeText(HomeActivity.this, "result !", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_About:
+
+                        startActivity(new Intent(getApplicationContext(),ResultActivity.class));
+
+                           break;
+                    case R.id.nav_whatsapp:
                         //startActivity(new Intent(getApplicationContext(), AboutUs.class));
-                        Toast.makeText(HomeActivity.this, "about !", Toast.LENGTH_SHORT).show();
-                        break;
+                        openURL("https://api.whatsapp.com/send?phone=918658599505&text=&source=&data=");
+
+                          break;
                     case R.id.nav_privacy:
                        // startActivity(new Intent(getApplicationContext(), PrivacyPolicy.class));
-                        Toast.makeText(HomeActivity.this, "privacy !", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.nav_terms:
-                        //startActivity(new Intent(getApplicationContext(), TermsAndCondition.class));
-                         Toast.makeText(HomeActivity.this, "terms !", Toast.LENGTH_SHORT).show();
-                        break;
+                        openURL(" https://yppschool.com/privacy_policy.html");
+
+                         break;
+
                     case R.id.nav_contact:
                         //startActivity(new Intent(getApplicationContext(), ContactUs.class));
-                        Toast.makeText(HomeActivity.this, "contact !", Toast.LENGTH_SHORT).show();
+                       openURL("tel:8658599505");
+
                         break;
                     case R.id.nav_logout:
                         AlertDialog.Builder builder2 = new AlertDialog.Builder(HomeActivity.this);
@@ -127,7 +142,17 @@ public class HomeActivity extends AppCompatActivity {
         strName =sh.getString("student_name","");
         stu_id=sh.getString("student_id","");
         api=sh.getString("api","");
+        profile_img_url = sh.getString("profile_IMG","");
         name.setText(strName);
+
+        Glide.with(getApplicationContext()).load(
+                Uri.parse(profile_img_url))
+                .error(R.drawable.avatar)
+                .placeholder(R.color.selected_gray)
+                .thumbnail(0.01f)
+                .into(student_profile_photo);
+
+
 
 //        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 //            NotificationChannel channel = new NotificationChannel("MyNotifications", "MyNotifications", NotificationManager.IMPORTANCE_HIGH);
@@ -199,6 +224,16 @@ public class HomeActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
+
+
+
+
+
+
+
+
     public void onBasicInfo(View view) {
         Intent intent=new Intent(HomeActivity.this,BasicInformation.class);
         startActivity(intent);
@@ -272,6 +307,21 @@ public class HomeActivity extends AppCompatActivity {
     public void onLibrary(View view) {
 
         startActivity(new Intent(this,LibraryActivity.class));
+
+          }
+
+          private void openURL(String _url)
+          {
+              try{
+
+                  Intent i = new Intent(Intent.ACTION_VIEW);
+                  i.setData(Uri.parse(_url));
+                  startActivity(i);
+
+              }catch (Exception e) {
+
+                  Toast.makeText(this, "No app found to open", Toast.LENGTH_SHORT).show();
+              }
 
           }
 

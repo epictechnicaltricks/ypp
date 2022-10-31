@@ -52,7 +52,7 @@ public class FeeActivity extends  AppCompatActivity  {
 	
 	private ArrayList<HashMap<String, Object>> results = new ArrayList<>();
 	private final ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
-	private final ArrayList<Double> add_position = new ArrayList<>();
+	private final ArrayList<String> add_position = new ArrayList<>(100);
 
 	private final ArrayList<Integer> itemrow = new ArrayList<>();
 	private HashMap<String, Object> itemrow_map = new HashMap<>();
@@ -84,8 +84,9 @@ public class FeeActivity extends  AppCompatActivity  {
 
 	private HashMap<String, Object> selected_payment_map = new HashMap<>();
 
-	private ArrayList<String> itemlist = new ArrayList<>(20);
-	private ArrayList<String> feelist = new ArrayList<>(20);
+	private ArrayList<String> itemlist = new ArrayList<>(100);
+	private ArrayList<String> feelist = new ArrayList<>(100);
+
 
 
 	@Override
@@ -206,6 +207,10 @@ public class FeeActivity extends  AppCompatActivity  {
 				results.clear();
 				selected_payment_pos.clear();
 				selected_payment_map.clear();
+				add_position.clear();
+				itemlist.clear();
+				feelist.clear();
+
 				_refresh();
 
 				try {
@@ -217,9 +222,13 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 						for(int x = 0; x<100 ; ++x) {
-							selected_payment_map = new HashMap<>();
-							selected_payment_map.put("Select", "False");
-							selected_payment_pos.add(selected_payment_map);
+//							selected_payment_map = new HashMap<>();
+//							selected_payment_map.put("Select", "False");
+//							selected_payment_pos.add(selected_payment_map);
+
+							add_position.add(x,"");
+							itemlist.add(x,"");
+							feelist.add(x,"");
 
 
 							/*itemrow_map = new HashMap<>();
@@ -282,7 +291,7 @@ public class FeeActivity extends  AppCompatActivity  {
 
 		pay.setOnClickListener(view -> {
 
-			if(amount>0)
+			if(amount>10)
 			{
 				Intent in = new Intent(Intent.ACTION_VIEW);
 				in.setData(Uri.parse(_request_amount_api(amount+"")));
@@ -362,10 +371,15 @@ public class FeeActivity extends  AppCompatActivity  {
 
 		//for(int x=0; x<){}
 		String url2="";
-
+        int item_pos=0;
 		for(int x=0; x<itemlist.size(); x++)
 		{
-			url2 = ("&itemrow["+x+"]="+itemlist.get(x)) + url2;
+			if(!itemlist.get(x).equals("")){
+
+				url2 = ("&itemrow["+item_pos+"]="+itemlist.get(x)) + url2;
+				item_pos++;
+			}
+
 		}
 
 			//Toast.makeText(this, url2, Toast.LENGTH_LONG).show();
@@ -377,11 +391,18 @@ public class FeeActivity extends  AppCompatActivity  {
 
 		//for(int x=0; x<){}
 		String url2="";
-
+        int fee_pos=0;
 		for(int x=0; x<feelist.size(); x++)
 		{
-			url2 = ("&fee["+x+"]="+feelist.get(x)) + url2;
+			if(!feelist.get(x).equals("")){
+				url2 = ("&fee["+fee_pos+"]="+feelist.get(x)) + url2;
+				fee_pos++;
+			}
+
 		}
+
+		//STRUCTURE OF DATA
+		//String itemrow = "&itemrow[0]=" +"35969"+"&itemrow[1]=" +"35970";
 
 		//Toast.makeText(this, url2, Toast.LENGTH_LONG).show();
 		return url2;
@@ -430,9 +451,7 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 
-	public void _add_data_to_pos (final double _pos) {
-		add_position.add(Double.valueOf(_pos));
-	}
+
 	
 	
 	public double _featch_pending_amt () {
@@ -479,24 +498,32 @@ public class FeeActivity extends  AppCompatActivity  {
 			final TextView date = _view.findViewById(R.id.date);
 			final TextView amt = _view.findViewById(R.id.amt);
 			final TextView fine = _view.findViewById(R.id.fine);
+			final TextView ID = _view.findViewById(R.id.id);
 			final TextView payment_date = _view.findViewById(R.id.payment_date);
 			final CheckBox select = _view.findViewById(R.id.select);
 			
 			try {
 				payment_date.setText("Payment date : ".concat(results.get(_position).get("paid_date").toString()));
+				// ‎ this is blanck space
+
 				amt.setText("₹".concat(results.get(_position).get("fee_amount").toString()).replace(".00", ""));
 				date.setText(results.get(_position).get("month_year").toString());
 				fine.setText("No fine");
+				ID.setText("ID :"+results.get(_position).get("id").toString());
+
+
+
 				if (results.get(_position).get("paid_status").toString().equals("Paid")) {
 					status.setText("Paid on");
 					status.setTextColor(0xFF1B5E20);
+					payment_date.setVisibility(View.VISIBLE);
 					select.setVisibility(View.GONE);
 					top_bg.setBackgroundColor(0xFFE8F5E9);
 				}
 				else {
 					status.setTextColor(0xFFFF6F00);
 					status.setText("Pending");
-					payment_date.setText("");
+					payment_date.setVisibility(View.GONE);
 					select.setVisibility(View.VISIBLE);
 					top_bg.setBackgroundColor(0xFFFFF8E1);
 				}
@@ -509,25 +536,29 @@ public class FeeActivity extends  AppCompatActivity  {
 
 
 
+                   // this to check  which position is selected
 
-
-			   /*	if (add_position.contains(_position)) {
+			   	if (add_position.contains(results.get(_position).get("id").toString())) {
 					select.setText("Selected");
+					select.setChecked(true);
 					pay.setVisibility(View.VISIBLE);
 					date_layout.setBackgroundColor(0xFF388E3C);
 				}
 				else {
 					date_layout.setBackgroundColor(0xFF3F51B5);
-					select.setText("itemrow[ ]");
+					select.setChecked(false);
+					select.setText("Select to Pay");
 					if (num == 0) {
 						pay.setVisibility(View.GONE);
 					}
 				}
 
-				*/
 
 
 				select.setOnClickListener(_view1 -> {
+
+
+
 
 
 
@@ -535,15 +566,24 @@ public class FeeActivity extends  AppCompatActivity  {
 
 						if (select.isChecked()) {
 
+
+
+
 							num++;
+
+							add_position.set(_position,results.get(_position).get("id").toString());
+							itemlist.set(_position,results.get(_position).get("id").toString());
+							feelist.set(_position,results.get(_position).get("fee_amount").toString());
+
+							//Toast.makeText(FeeActivity.this,_position+"" , Toast.LENGTH_SHORT).show();
+
 							select.setText("Selected");
 							pay.setVisibility(View.VISIBLE);
 							date_layout.setBackgroundColor(0xFF388E3C);
 
 							amount = amount + Double.parseDouble(amt.getText().toString().replaceAll("₹",""));
 
-							itemlist.add(results.get(_position).get("id").toString());
-							feelist.add(results.get(_position).get("fee_amount").toString());
+
 
 
 							//itemrow_map = new HashMap<>();
@@ -554,7 +594,7 @@ public class FeeActivity extends  AppCompatActivity  {
 							//in.setParams(itemrow_map, RequestNetworkController.REQUEST_PARAM);
 							//in.startRequestNetwork(RequestNetworkController.POST, api, "no tag", this_is_2);
 							//selected_payment_pos.get(_position).put("Select", "True");
-							//add_position.add(Double.valueOf(_position));
+
 
 
 
@@ -567,6 +607,13 @@ public class FeeActivity extends  AppCompatActivity  {
 						}
 						else {
 							num--;
+
+							add_position.set(_position,"");
+							itemlist.set(_position,"");
+							feelist.set(_position,"");
+
+							//Toast.makeText(FeeActivity.this,_position+"" , Toast.LENGTH_SHORT).show();
+
 
 							//itemlist.remove(_position);
 							//feelist.remove(_position);
@@ -583,7 +630,9 @@ public class FeeActivity extends  AppCompatActivity  {
 							//itemrow.remove(Double.parseDouble(results.get(_position).get("id").toString()));
 
 							amount = amount - Double.parseDouble(amt.getText().toString().replaceAll("₹",""));
+
 							//add_position.remove((int)(num));
+
 							date_layout.setBackgroundColor(0xFF3F51B5);
 							select.setText("Not selected");
 
@@ -596,6 +645,10 @@ public class FeeActivity extends  AppCompatActivity  {
 							//listmap.remove(_position);
 
 						}
+
+
+						//Toast.makeText(FeeActivity.this,add_position.size()+"\n\nadd_pos _size" , Toast.LENGTH_SHORT).show();
+
 
 						//showMessage(String.valueOf(amount));
 						amount_text.setText("₹"+(int)amount);

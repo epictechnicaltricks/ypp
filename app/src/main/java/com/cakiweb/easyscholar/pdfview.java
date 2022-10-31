@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rajat.pdfviewer.PdfViewerActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -202,7 +203,6 @@ if(getIntent().getStringExtra("request").equals("syllabus")) {
 if(getIntent().getStringExtra("request").equals("pdf")) {
 
 
-/*
 
 
 startActivity(
@@ -215,10 +215,9 @@ startActivity(
 	));
 finish();
 
-*/
 
-			loadPDF(getIntent().getStringExtra("url"));
-	        loadPDF(getIntent().getStringExtra("url"));
+		/*	loadPDF(getIntent().getStringExtra("url"));
+	        loadPDF(getIntent().getStringExtra("url"));*/
 
 		}
 

@@ -11,15 +11,15 @@
         android:background="@drawable/ic_waves"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/clgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/doon_main" />
+        <ImageView
+            android:id="@+id/clgLogo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/ypp2" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
@@ -69,7 +69,7 @@
                         android:ems="10"
                         android:hint="User name"
                         android:textColorHint="@color/hint_c"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:textColor="@color/black"
                         android:paddingTop="10dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -136,7 +136,7 @@
                         android:layout_centerHorizontal="true"
                         android:text="LogIn"
                         android:textColor="@color/white"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
