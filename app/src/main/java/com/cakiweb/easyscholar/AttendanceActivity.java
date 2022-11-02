@@ -109,22 +109,24 @@ public class AttendanceActivity extends  AppCompatActivity  {
 	
 	private void initializeLogic() {
 
-		//https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=643
+		// OLD //https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=643
 
-		showMessage("https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=643");
+
+		// NEW //https://yppschool.com/erp/index.php/Api_request/api_list?method=attendance&student_id=355&session_id=25
 
 		String method = "attendance";
-		API_request(method,stu_id,api_URL);
+		API_request(method,stu_id,api_URL,session_id);
 
 
 	}
 
 
-	private  void API_request(String _method, String _student_id , String _api)
+	private  void API_request(String _method, String _student_id , String _api, String _sesson)
 	{
 		HashMap<String, Object> map2 = new HashMap<>();
 		map2.put("method", _method);
 		map2.put("student_id", _student_id);
+		map2.put("session_id",_sesson);
 
 
 		api.setParams(map2, RequestNetworkController.REQUEST_PARAM);
@@ -134,6 +136,8 @@ public class AttendanceActivity extends  AppCompatActivity  {
 				_api,
 				"tag",
 				_api_request_listener);
+
+		
 
 	}
 

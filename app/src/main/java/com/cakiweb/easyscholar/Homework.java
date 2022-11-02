@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -407,15 +408,23 @@ TextView show_all;
     private void _request_api_hometask_classtask() {
 
 
-    
+    //when api call again it will disable filter of teacher and student
     disable_date_layout();
     disable_teach_layout();
+
+
     show_all.setVisibility(View.GONE);
 
             ProgressDialog loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,true);
             //String url = HttpURL+"?method=homework&userId="+id;
+            //https://yppschool.com/erp/index.php/Api_request/
+            //api_list?method=homework&class_id=15&session_id='2022-2023'
 
-            String url = api+"student_id="+stu_id+"&method="+id+"&class_id="+class_id;
+
+
+
+
+            String url = api+"student_id="+stu_id+"&method="+id+"&class_id="+class_id+"&session_id='"+getCurrentYear()+"-"+(getCurrentYear()+1+"'");
             Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
 
             StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
@@ -442,7 +451,12 @@ TextView show_all;
         ProgressDialog loading = ProgressDialog.show(this,"Wait a sec","Filtering...",false,false);
         //String url = HttpURL+"?method=homework&userId="+id;
 
-        String url = api+"student_id="+stu_id+"&method="+id+"&class_id="+class_id;
+        String url = api+"student_id="+stu_id+"&method="+id+"&class_id="+class_id+"&session_id='"+getCurrentYear()+"-"+(getCurrentYear()+1+"'");
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+
         Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
@@ -526,6 +540,7 @@ TextView show_all;
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
                         Toast.makeText(Homework.this,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
@@ -811,4 +826,27 @@ TextView show_all;
             noData.findViewById(R.id.noDataHomework).setVisibility(View.VISIBLE);
         }
     }
+
+
+    public int getCurrentYear(){
+
+        Calendar c;
+        c = Calendar.getInstance();
+
+        @SuppressLint("SimpleDateFormat")
+        String now_year = new SimpleDateFormat("yyyy").format(c.getTime());
+
+        return Integer.parseInt(now_year);
+
+    }
+
 }
+
+
+
+
+
+
+
+
+

@@ -96,7 +96,17 @@ public class FeeActivity extends  AppCompatActivity  {
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
-	
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		finish();
+	}
+
+
+
+
+
 	private void initialize(Bundle _savedInstanceState) {
 		
 
@@ -153,7 +163,7 @@ public class FeeActivity extends  AppCompatActivity  {
 						break;
 					}
 					case (3): {
-						_request_api("tuitionfee");
+						_request_api("dayboardingfees");
 						break;
 					}
 					default: {
@@ -175,6 +185,8 @@ public class FeeActivity extends  AppCompatActivity  {
 				
 			}
 		});
+
+
 
 
 
@@ -449,11 +461,6 @@ public class FeeActivity extends  AppCompatActivity  {
 
 	}
 
-
-
-
-	
-	
 	public double _featch_pending_amt () {
 		amt_ = 0;
 		pos = 0;
@@ -525,7 +532,7 @@ public class FeeActivity extends  AppCompatActivity  {
 					status.setText("Pending");
 					payment_date.setVisibility(View.GONE);
 					select.setVisibility(View.VISIBLE);
-					top_bg.setBackgroundColor(0xFFFFF8E1);
+					top_bg.setBackgroundColor(0xFFFFECD5);
 				}
 				bg.setElevation((float)20);
 

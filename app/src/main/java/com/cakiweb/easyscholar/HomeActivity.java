@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
                           break;
                     case R.id.nav_privacy:
                        // startActivity(new Intent(getApplicationContext(), PrivacyPolicy.class));
-                        openURL(" https://yppschool.com/privacy_policy.html");
+                        openURL("https://yppschool.com/privacy_policy.html");
 
                          break;
 
