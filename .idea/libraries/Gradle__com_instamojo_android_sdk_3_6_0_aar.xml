@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.instamojo:android-sdk:3.6.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2970610ef8cac32c4f5b92ae905ffb42/transformed/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2970610ef8cac32c4f5b92ae905ffb42/transformed/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2970610ef8cac32c4f5b92ae905ffb42/transformed/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

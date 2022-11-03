@@ -2,9 +2,10 @@
   <library name="Gradle: com.google.android.datatransport:transport-api:3.0.0@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/83a01e127695a8e1820f7cff23ebff0b/transformed/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2cfa97cfaf270e63f7d6425a1a9d37f4/transformed/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2cfa97cfaf270e63f7d6425a1a9d37f4/transformed/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2cfa97cfaf270e63f7d6425a1a9d37f4/transformed/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/93b2df97417c1b885cb2c3a1ab77507e/transformed/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/93b2df97417c1b885cb2c3a1ab77507e/transformed/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/93b2df97417c1b885cb2c3a1ab77507e/transformed/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

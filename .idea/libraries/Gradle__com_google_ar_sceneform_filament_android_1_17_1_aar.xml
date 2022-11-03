@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.ar.sceneform:filament-android:1.17.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/564f4d4564c0ee25323fc85affa612e6/transformed/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/564f4d4564c0ee25323fc85affa612e6/transformed/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/564f4d4564c0ee25323fc85affa612e6/transformed/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

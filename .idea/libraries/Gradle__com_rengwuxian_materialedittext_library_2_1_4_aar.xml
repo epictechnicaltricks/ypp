@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.rengwuxian.materialedittext:library:2.1.4@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cec65cf97dd5016dfa7dba8c9ea2ee35/transformed/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cec65cf97dd5016dfa7dba8c9ea2ee35/transformed/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cec65cf97dd5016dfa7dba8c9ea2ee35/transformed/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cec65cf97dd5016dfa7dba8c9ea2ee35/transformed/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

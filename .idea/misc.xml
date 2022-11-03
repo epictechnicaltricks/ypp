@@ -3,24 +3,67 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_attendance.xml" value="0.33" />
-        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_basic_information.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable-anydpi-v26/but_style2.xml" value="0.177" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable-anydpi-v26/but_style_library.xml" value="0.1365" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable-v24/but_style_green.xml" value="0.1085" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable-v24/but_style_payhis.xml" value="0.17" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable/but_style22.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable/but_style_green.xml" value="0.1365" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable/but_style_his.xml" value="0.1085" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable/but_style_library.xml" value="0.1365" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable/ic_wave.xml" value="0.1255" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/drawable/ic_waves.xml" value="0.1255" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/PayHis_custom.xml" value="0.22" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/PayHis_layout.xml" value="0.18" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_attendance.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_basic_information.xml" value="0.18" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_canteen.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_cca.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_event.xml" value="0.15670289855072464" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_exam_time_table.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_feed_back.xml" value="0.1" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_home.xml" value="0.25" />
-        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_leave_application.xml" value="0.10106382978723404" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_homework.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_hostel.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_leave_application.xml" value="0.15" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_library.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_mark_sheet.xml" value="0.15" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_notice.xml" value="0.25" />
-        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_payment.xml" value="0.15" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_pay_get_way.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_payment.xml" value="0.14" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_pdf_view.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_result.xml" value="0.22" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_time_table.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/activity_transport.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/attendance.xml" value="0.2" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/attendance_custom_view.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/cca_resultlist.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/cus.xml" value="0.18" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/day.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/events.xml" value="0.1" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/exam.xml" value="0.18" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/fee.xml" value="0.18" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/feedata.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/fees_cus.xml" value="0.33" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/home_work.xml" value="0.33" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/imageView.xml" value="0.22" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/issue_book.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/leave_status.xml" value="0.10106382978723404" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/lib_custom.xml" value="0.15670289855072464" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/library_layout.xml" value="0.2" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/lists.xml" value="0.25" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/notice_view_layout.xml" value="0.10106382978723404" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/noticelist.xml" value="0.25" />
-        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/pdfview_layout.xml" value="0.10106382978723404" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/pay_his_custom.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/pay_his_layout.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/pdfview_layout.xml" value="0.18" />
         <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/resultlist.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/study_material.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/layout/studymaterial.xml" value="0.1" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/menu/draw_menu.xml" value="0.25" />
+        <entry key="..\:/Users/RAM/Downloads/cakiweb_eazyscholar-master/cakiweb_eazyscholar-master/app/src/main/res/menu/example_menu.xml" value="0.15" />
       </map>
     </option>
   </component>
@@ -29,5 +72,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
   </component>
 </project>
